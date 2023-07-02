@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>عمده فروشی</title>
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% if messages %}
+        {% for msg in messages %}
+            <div style="text-align: center; background-color: #5897fb; font-size: 15px; font-family: IRANSansWe; " role="alert">
+              {{ msg }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+	{% block context %} {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block context %}
+    <div class="main">
+    <div class="container">
+    {% if not request.user.is_authenticated %}
+            <p style="text-align: center;padding-top: 60px">براس ثبت سفارش ابتدا به حساب کاربری خود وارد شوید</p>
+            <div class="form-group form-button" style="text-align: center;padding: 50px">
+            <a href="{% url 'account:login' %}">
+                <input type="submit" name="signin" id="signin" class="form-submit" value="ورود"/>
+            </a>
+            </div>
+        {% else %}
+        <table>
+          <tr>
+            <th>نام محصول</th>
+            <th>قیمت هر واحد</th>
+            <th>موجودی</th>
+            <th>تصویر</th>
+            <th>سفارش</th>
+          </tr>
+        {% for inventory in inventorys %}
+          <tr>
+            <td>{{ inventory.product.name }}</td>
+            <td>{{ inventory.product.price }} تومان </td>
+            <td>{{ inventory.quantity }} {{ inventory.product.type.name }}</td>
+            <td><img style="width: 75px" src="{{ inventory.product.image.url }}"></td>
+            <td><a href="{% url 'product:order' inventory.id %}"><button type="button" value="سفارش">ثبت سفارش</button></a></td>
+          </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

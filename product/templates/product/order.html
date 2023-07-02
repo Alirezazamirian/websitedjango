@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block context %}
+    <div class="main">
+    <div class="container" style="padding-bottom: 50px">
+
+        <img style="width: 250px; padding-left: 10px" src="{{ inventory.product.image.url }}">
+        <div style="float: right;padding-right: 15px; text-align: right">
+        <h2>{{ inventory.product }}</h2>
+        <p>قیمت هر {{ inventory.product.type }} {{ inventory.product.price }} تومان</p>
+        <p>موجودی : {{ inventory.quantity }} {{ inventory.product.type }}</p>
+
+        <form method="POST" action="" class="register-form" id="login-form">
+            {% csrf_token %}
+            {% for error in order_form.quantity_need.errors %}
+                <span style="color: #bd4147">{{ error }}</span><br>
+            {% endfor %}
+            <div class="form-group">
+                <label for="your_quantity"><i class="zmdi zmdi-card"></i></label>
+                {{ order_form.quantity_need }}
+            </div>
+            <div class="form-group form-button">
+                <input type="submit" name="order_form" id="order_form" class="form-submit" value="نهایی کردن سفارش">
+            </div>
+        </form>
+
+        </div>
+
+    </div>
+    </div>
+
+{% endblock %}

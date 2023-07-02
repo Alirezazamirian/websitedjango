@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block context %}
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Register</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            {% csrf_token %}
+                            {% for error in register_form.first_name.errors %}
+                                <span style="color: #bd4147">{{ error }}</span><br>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-folder-person material-icons-name"></i></label>
+                                {{ register_form.first_name }}
+                            </div>
+                            {% for error in register_form.last_name.errors %}
+                                <span style="color: #bd4147">{{ error }}</span><br>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-folder-person material-icons-name"></i></label>
+                                {{ register_form.last_name }}
+                            </div>
+                            {% for error in register_form.username.errors %}
+                                <span style="color: #bd4147">{{ error }}</span><br>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-account"></i></label>
+                                {{ register_form.username }}
+                            </div>
+                            {% for error in register_form.email.errors %}
+                                <span style="color: #bd4147">{{ error }}</span><br>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-email"></i></label>
+                                {{ register_form.email }}
+                            </div>
+                            {% for error in register_form.city.errors %}
+                                <span style="color: #bd4147">{{ error }}</span><br>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-city"></i></label>
+                                <div style="text-align: center;">{{ register_form.city }}</div>
+                            </div>
+                            {% for error in register_form.password.errors %}
+                                <span style="color: #bd4147">{{ error }}</span><br>
+                            {% endfor %}
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                {{ register_form.password }}
+                            </div>
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'images/signup-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'account:login' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}
